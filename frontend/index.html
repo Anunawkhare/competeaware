@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompeteAware - Competitive Monitoring Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 CompeteAware</h1>
+            <p>AI-Powered Competitive Intelligence Platform</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navbar">
+            <button class="nav-btn active" onclick="showSection('dashboard')">Dashboard</button>
+            <button class="nav-btn" onclick="showSection('competitors')">Competitors</button>
+            <button class="nav-btn" onclick="showSection('updates')">All Updates</button>
+            <button class="nav-btn" onclick="showSection('alerts')">Alerts</button>
+        </nav>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>🏢 Total Competitors</h3>
+                    <div id="total-competitors" class="stat-number">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>📊 Total Updates</h3>
+                    <div id="total-updates" class="stat-number">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>🚨 High Impact</h3>
+                    <div id="high-impact" class="stat-number">0</div>
+                </div>
+                <div class="stat-card">
+                    <h3>⏰ Last Updated</h3>
+                    <div id="last-updated" class="stat-number">Never</div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>📈 Updates by Category</h3>
+                    <canvas id="categoryChart" height="250"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3>🕒 Recent Activity</h3>
+                    <div id="recent-updates" class="updates-list"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button onclick="triggerScraping()" class="btn-primary">
+                    🔄 Run Scraping Now
+                </button>
+                <button onclick="loadDashboard()" class="btn-secondary">
+                    📥 Refresh Data
+                </button>
+                <button onclick="addCompetitor()" class="btn-success">
+                    ➕ Add Competitor
+                </button>
+            </div>
+        </section>
+
+        <!-- Competitors Section -->
+        <section id="competitors" class="section">
+            <h2>🏢 Managed Competitors</h2>
+            <div class="competitors-list" id="competitors-list">
+                <!-- Competitors will be loaded here -->
+            </div>
+
+            <div class="add-competitor-form">
+                <h3>Add New Competitor</h3>
+                <form onsubmit="addNewCompetitor(event)">
+                    <input type="text" id="comp-name" placeholder="Competitor Name" required>
+                    <input type="url" id="comp-website" placeholder="Website URL" required>
+                    <input type="text" id="comp-twitter" placeholder="Twitter Handle (optional)">
+                    <button type="submit">Add Competitor</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- All Updates Section -->
+        <section id="updates" class="section">
+            <h2>📋 All Competitor Updates</h2>
+            <div class="filters">
+                <select id="category-filter" onchange="filterUpdates()">
+                    <option value="">All Categories</option>
+                    <option value="pricing">Pricing</option>
+                    <option value="campaign">Campaign</option>
+                    <option value="product_release">Product Release</option>
+                    <option value="partnership">Partnership</option>
+                    <option value="other">Other</option>
+                </select>
+                <select id="competitor-filter" onchange="filterUpdates()">
+                    <option value="">All Competitors</option>
+                </select>
+            </div>
+            <div id="all-updates" class="updates-list"></div>
+        </section>
+
+        <!-- Alerts Section -->
+        <section id="alerts" class="section">
+            <h2>🚨 High Impact Alerts</h2>
+            <div id="alerts-list" class="updates-list"></div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

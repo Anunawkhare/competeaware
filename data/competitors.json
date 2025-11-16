@@ -1,0 +1,14 @@
+{
+  "competitors": [
+    {
+      "name": "TechCorp Inc",
+      "website": "https://example.com",
+      "social_handles": "{\"twitter\": \"techcorp\"}"
+    },
+    {
+      "name": "InnovateLabs",
+      "website": "https://example.org",
+      "social_handles": "{\"twitter\": \"innovatelabs\"}"
+    }
+  ]
+}
